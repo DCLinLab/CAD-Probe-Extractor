@@ -4,5 +4,5 @@
 ## Installation
 
 ```bash
-pip install ezdxf
+pip install ezdxf probeinterface matplotlib kilosort
 ```

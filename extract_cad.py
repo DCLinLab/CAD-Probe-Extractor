@@ -1,6 +1,6 @@
 import ezdxf
 from kilosort.io import save_probe
-from probeinterface import Probe
+from probeinterface import Probe, write_probeinterface
 from probeinterface.plotting import plot_probe
 import numpy as np
 import matplotlib.pyplot as plt
@@ -45,14 +45,16 @@ def make_kilosort_probe(ch, x, y, exclude=()):
 def make_probe(ch, x, y):
     probe = Probe(ndim=2, si_units='um')
     probe.set_contacts(positions=np.array([x, y]).T, shapes='circle')
+    probe.set_device_channel_indices(ch)
     return probe
 
 
 if __name__ == '__main__':
     doc = ezdxf.readfile("data/120ch_curved.dxf")
     temp = get_polyline(doc)
-    probe = make_kilosort_probe(*temp)
-    save_probe(probe, 'data/120_curved.json')
+    # probe = make_kilosort_probe(*temp)
+    # save_probe(probe, 'data/120_curved_kilo.json')
     probe = make_probe(*temp)
-    plot_probe(probe)
+    # write_probeinterface('data/120_curved.json', probe)
+    plot_probe(probe, with_device_index=True)
     plt.show()
