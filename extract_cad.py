@@ -1,5 +1,5 @@
 import ezdxf
-from kilosort.io import save_probe
+from pathlib import Path
 from probeinterface import Probe, write_probeinterface
 from probeinterface.plotting import plot_probe
 import numpy as np
@@ -50,11 +50,12 @@ def make_probe(ch, x, y):
 
 
 if __name__ == '__main__':
-    doc = ezdxf.readfile("data/120ch_curved.dxf")
-    temp = get_polyline(doc)
-    # probe = make_kilosort_probe(*temp)
-    # save_probe(probe, 'data/120_curved_kilo.json')
-    probe = make_probe(*temp)
-    # write_probeinterface('data/120_curved.json', probe)
-    plot_probe(probe, with_device_index=True)
-    plt.show()
+    indir = Path('input')
+    outdir = Path('output')
+    for i in indir.glob('*.dxf'):
+        doc = ezdxf.readfile(i)
+        temp = get_polyline(doc)
+        probe = make_probe(*temp)
+        write_probeinterface(outdir / i.with_suffix('.json').name, probe)
+        # plot_probe(probe, with_device_index=True)
+        # plt.show()
