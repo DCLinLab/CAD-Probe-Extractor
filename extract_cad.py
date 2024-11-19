@@ -18,8 +18,8 @@ def get_polyline(doc, layer='New_CrAu'):
                 n = entity.get_xdata('PE_URL')[0].value
                 if n.startswith('in'):
                     ch.append(n[2:])
-                    x.append(entity[0][0])
-                    y.append(entity[0][1])
+                    x.append(entity[0][1])
+                    y.append(entity[0][0])
     return ch, x, y
 
 
