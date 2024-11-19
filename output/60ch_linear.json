@@ -1,0 +1,18 @@
+{
+    "specification": "probeinterface",
+    "version": "0.2.24",
+    "probes": [
+        {
+            "ndim": 2,
+            "si_units": "um",
+            "annotations": {},
+            "contact_annotations": {},
+            "contact_positions": [],
+            "contact_plane_axes": [],
+            "contact_shapes": [],
+            "contact_shape_params": [],
+            "device_channel_indices": [],
+            "shank_ids": []
+        }
+    ]
+}
